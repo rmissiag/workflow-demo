@@ -6,7 +6,9 @@
 
   vars:
     region:   us-east-1
-    ami:      ami-81cf0c97 
+    ami:      ami-81cf0c97
+    vpc_subnet_id: 
+    
     keypair:  "{{ ec2_keypair_name | default('aws-jmarc') }}"
     set_dns:  False
     count:    2
@@ -27,6 +29,7 @@
         module: ec2
         keypair: "{{ keypair }}"
         instance_type: "{{ type | default('t2.micro') }}"
+        vpc_subnet_id: "{{ vpc_subnet | default('subnet-6f4b9b35') }}"
         #vpc_subnet_id: "subnet-{{ vpc_subnet | default('d931e1e5') }}"
         image: "{{ ami }}"
         region: "{{ region }}"
@@ -41,6 +44,7 @@
         module: ec2
         keypair: "{{ keypair }}"
         instance_type: "{{ type | default('t2.micro') }}"
+        vpc_subnet_id: "{{ vpc_subnet | default('subnet-6f4b9b35') }}"
         #vpc_subnet_id: "subnet-{{ vpc_subnet | default('d931e1e5') }}"
         image: "{{ ami }}"
         region: "{{ region }}"
